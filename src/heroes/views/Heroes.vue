@@ -2,8 +2,8 @@
   <section>
     <h1>Heroes Works!</h1>
     <div v-if="editingTracker === '0'" style="display: flex; place-content: center; place-items: center">
-      <div style="">
-          <Form :text="'SAVE'" :obj="heroForm" @handleSubmit="() => {}" />
+      <div>
+          <Form :text="'SAVE'" :obj="heroForm" @handleSubmit="addHeroAction(heroForm)" />
           <v-divider></v-divider>
       </div>
     </div>
@@ -20,7 +20,7 @@
         >
           <v-card-text>
             <div v-if="editingTracker === hero.id">
-              <Form :text="'UPDATE'" :obj="hero" @handleSubmit="() => {}" />
+              <Form :text="'UPDATE'" :obj="hero" @handleSubmit="updateHeroAction(hero)" />
               <v-divider></v-divider>
             </div>
             <span v-else>{{
@@ -43,7 +43,7 @@
             <v-btn text color="primary" @click="goDetail(hero.id)"
               >DETAIL</v-btn
             >
-            <v-btn text color="error" @click="() => {}">
+            <v-btn text color="error" @click="removeHeroAction(hero.id)">
               DELETE
             </v-btn>
           </v-card-actions>
@@ -73,14 +73,15 @@ export default {
   computed: {
     ...mapGetters("hero", {
       heroes: "heroes",
-      isLoading: "isLoading"
+      isLoading: "isLoading",
+      error: "error"
     })
   },
   methods: {
     goDetail(id) {
       this.$router.push({ name: "hero-detail", params: { id } });
     },
-    ...mapActions("hero", ["getHeroesAction"])
+    ...mapActions("hero", ["getHeroesAction", "removeHeroAction", "addHeroAction", "updateHeroAction"])
   },
   mounted() {
     this.getHeroesAction();
