@@ -4,6 +4,7 @@
       <v-row>
         <v-col cols="12" md="4">
           <v-text-field
+            autocomplete="off"
             v-model="obj.firstName"
             :counter="10"
             label="First name"
@@ -13,6 +14,7 @@
 
         <v-col cols="12" md="4">
           <v-text-field
+            autocomplete="off"
             v-model="obj.lastName"
             :counter="10"
             label="Last name"
@@ -22,6 +24,7 @@
 
         <v-col cols="12" md="4">
           <v-text-field
+            autocomplete="off"
             v-model="obj.house"
             label="House"
             required
@@ -29,6 +32,7 @@
         </v-col>
         <v-col cols="12" md="4">
           <v-text-field
+            autocomplete="off"
             v-model="obj.knownAs"
             label="Known as"
             required
@@ -36,7 +40,9 @@
         </v-col>
       </v-row>
     </v-container>
-    <v-btn @click="onSubmit" class="ma-2" tile color="indigo" dark>{{ text }}</v-btn>
+    <v-btn @click="onSubmit" class="ma-2" tile color="indigo" dark>{{
+      text
+    }}</v-btn>
   </v-form>
 </template>
 
